@@ -177,13 +177,16 @@ clasp login
 ```
 A browser tab opens — sign in and click **Allow** on all permissions.
 
-### 2. Create the Sheet + Script project
+### 2. Link to a Google Apps Script project
+
+**Path A — No Sheet yet (recommended)**
 ```bash
 clasp create --title "BIR Compliance Toolkit" --type sheets
 ```
-This creates a Google Sheet, a linked Apps Script project, and writes `.clasp.json` with your Script ID automatically.
+Creates the Sheet + Script and writes `.clasp.json` automatically. Skip to Step 3.
 
-> Already have a Sheet? Open it → **Extensions > Apps Script** → ⚙️ **Project Settings** → copy the Script ID → paste it into `.clasp.json`.
+**Path B — Already have a Sheet**
+Open it → **Extensions > Apps Script** → ⚙️ **Project Settings** → copy the Script ID → paste it into `.clasp.json`. Then go to Step 3. Do **not** run `clasp create`.
 
 ### 3. Push the code
 ```bash
