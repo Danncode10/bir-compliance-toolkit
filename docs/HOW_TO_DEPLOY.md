@@ -82,10 +82,11 @@ Expected output:
 ### 5. Open and verify
 
 ```bash
-clasp open
+clasp open-script    # opens the Apps Script editor
+clasp open-container # opens the linked Google Sheet
 ```
 
-This opens the Apps Script editor. Switch to the linked Google Sheet, reload the page — the **BIR Tools** menu should appear in the menu bar.
+Reload the Google Sheet — the **BIR Tools** menu should appear in the menu bar.
 
 ---
 

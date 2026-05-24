@@ -197,9 +197,10 @@ clasp push
 
 ### 4. Open and verify
 ```bash
-clasp open
+clasp open-container   # opens the linked Google Sheet
+clasp open-script      # opens the Apps Script editor
 ```
-Switch to the linked Google Sheet and reload — the **BIR Tools** menu appears.
+Reload the Google Sheet — the **BIR Tools** menu appears.
 
 For the full deployment guide see [`docs/HOW_TO_DEPLOY.md`](docs/HOW_TO_DEPLOY.md).
 

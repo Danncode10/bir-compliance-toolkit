@@ -172,8 +172,11 @@ show_push() {
     echo -e "   ${GREEN}└─ src/generateQAP.gs${NC}"
     echo -e "   ${GREEN}└─ src/utils.gs${NC}\n"
 
-    echo -e "${BOLD}Open the project in the browser:${NC}"
-    echo -e "   ${CYAN}clasp open${NC}\n"
+    echo -e "${BOLD}Open the linked Google Sheet:${NC}"
+    echo -e "   ${CYAN}clasp open-container${NC}\n"
+
+    echo -e "${BOLD}Open the Apps Script editor:${NC}"
+    echo -e "   ${CYAN}clasp open-script${NC}\n"
 
     echo -e "${BOLD}Pull changes from Apps Script back to local:${NC}"
     echo -e "   ${CYAN}clasp pull${NC}\n"
