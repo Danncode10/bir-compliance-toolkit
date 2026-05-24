@@ -30,3 +30,7 @@ build/
 .AppleDouble
 .LSOverride
 ._*
+
+# Screenshots / Spreadsheet Backups
+SS/
+
