@@ -1,4 +1,5 @@
 {
   "scriptId": "YOUR_SCRIPT_ID_HERE",
+  "parentId": "YOUR_SHEET_FILE_ID_HERE",
   "rootDir": "./src"
 }

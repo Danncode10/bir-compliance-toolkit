@@ -1,100 +1,135 @@
 # HOW_TO_DEPLOY.md — Developer Setup Guide
 
-## Prerequisites
-
-- Node.js v14+
-- Git
-- A Google account (the one that owns the target Google Sheet)
+Follow these steps in order. Each step has the exact command and what to expect.
 
 ---
 
-## First-time setup
+## Prerequisites
 
-### 1. Clone and install clasp
+- Node.js v14+ — check with `node --version`
+- Git
+- A Google account
+
+---
+
+## Step 1 — Install clasp
 
 ```bash
-git clone https://github.com/Danncode10/bir-compliance-toolkit.git
-cd bir-compliance-toolkit
 npm install -g @google/clasp
+clasp --version   # should print 3.x.x
 ```
 
-### 2. Log in to Google
+---
+
+## Step 2 — Enable the Apps Script API
+
+Visit: **https://script.google.com/home/usersettings**
+
+Toggle **Google Apps Script API** to **On**.
+
+> Do this before anything else. If you skip it, `clasp push` will fail with:
+> `User has not enabled the Apps Script API`
+
+---
+
+## Step 3 — Log in to Google
 
 ```bash
 clasp login
 ```
 
-A browser tab opens. Sign in and click **Allow** on all permissions.
-
-### 2a. Enable the Apps Script API
-
-Visit **https://script.google.com/home/usersettings** and toggle **Google Apps Script API** to **On**.
-
-This is a one-time step per Google account. `clasp push` will fail with "User has not enabled the Apps Script API" if skipped.
-
-### 3. Link to a Google Apps Script project
-
-**Pick one path — do not do both.**
+A browser tab opens. Sign in with the Google account that owns the Sheet. Click **Allow** on every permission listed.
 
 ---
 
-**Path A — No Sheet yet (recommended)**
+## Step 4 — Link to the Google Apps Script project
+
+Copy `.clasp.json.example` to create your local config:
 
 ```bash
-clasp create --title "BIR Compliance Toolkit" --type sheets
+cp .clasp.json.example .clasp.json
 ```
 
-Creates a new Google Sheet + linked Apps Script project and writes `.clasp.json` automatically. Skip to Step 4.
-
----
-
-**Path B — You already have a Sheet**
-
-1. Open the Sheet → **Extensions > Apps Script**
-2. Click ⚙️ **Project Settings** → copy the **Script ID**
-3. Paste it into `.clasp.json`:
+Then fill in both IDs:
 
 ```json
 {
-  "scriptId": "PASTE_YOUR_SCRIPT_ID_HERE",
+  "scriptId": "YOUR_SCRIPT_ID_HERE",
+  "parentId": "YOUR_SHEET_FILE_ID_HERE",
   "rootDir": "./src"
 }
 ```
 
-Then go to Step 4. Do **not** run `clasp create` — that would create a second project and disconnect your Sheet.
+**How to get the Script ID:**
+1. Open your Google Sheet
+2. Click **Extensions > Apps Script**
+3. Click ⚙️ **Project Settings**
+4. Copy the **Script ID**
 
-### 4. Push the code
+**How to get the Sheet file ID:**
+
+It's in the Sheet's URL:
+```
+https://docs.google.com/spreadsheets/d/SHEET_FILE_ID_IS_HERE/edit
+```
+
+> Don't have a Sheet yet? Create one at **https://sheets.new**, then follow the steps above.
+
+---
+
+## Step 5 — Push the code
 
 ```bash
 clasp push
 ```
 
+When prompted `Manifest file has been updated. Do you want to push and overwrite?` — type **Yes**.
+
 Expected output:
 ```
-└─ src/onOpen.gs
+Pushed 7 files.
+└─ src/appsscript.json
 └─ src/generate2307.gs
 └─ src/generate2317.gs
-└─ src/generateSLSP.gs
 └─ src/generateQAP.gs
+└─ src/generateSLSP.gs
+└─ src/onOpen.gs
 └─ src/utils.gs
 ```
 
-### 5. Open and verify
+---
+
+## Step 6 — Open and verify
 
 ```bash
-clasp open-script    # opens the Apps Script editor
-clasp open-container # opens the linked Google Sheet
+clasp open-container   # opens the linked Google Sheet
+clasp open-script      # opens the Apps Script editor
 ```
 
 Reload the Google Sheet — the **BIR Tools** menu should appear in the menu bar.
+
+If the menu doesn't appear, go to **Extensions > Apps Script** and check the Execution log for errors.
+
+---
+
+## Step 7 — Set up the input sheets
+
+For each generator, run its Setup function from the menu before trying to generate:
+
+| Menu path | What it does |
+|-----------|-------------|
+| BIR Tools > Form 2307 > Setup Form 2307 Sheet | Creates the Form 2307 input tab |
+| BIR Tools > Form 2317 > Setup Form 2317 Sheet | Creates the Form 2317 input tab |
+| BIR Tools > SLSP > Setup SLSP Sheet | Creates the SLSP input tab |
+| BIR Tools > QAP > Setup QAP Sheet | Creates the QAP input tab |
 
 ---
 
 ## Daily workflow
 
 ```bash
-# Edit code in src/
-clasp push          # Upload to Apps Script
+# Edit files in src/
+clasp push        # upload to Apps Script
 # Test in the Sheet
 git add src/
 git commit -m "your message"
@@ -104,17 +139,14 @@ git commit -m "your message"
 
 ## Troubleshooting
 
-| Symptom | Fix |
-|---------|-----|
+| Error | Fix |
+|-------|-----|
 | `clasp: command not found` | Run `npm install -g @google/clasp` |
-| `User has not enabled the Apps Script API` | Visit https://script.google.com/home/usersettings and turn on **Google Apps Script API** |
-| `Error: Invalid API call` on push | Your `.clasp.json` has a wrong or missing Script ID — re-run `clasp create` or paste the correct ID |
+| `User has not enabled the Apps Script API` | Go to https://script.google.com/home/usersettings and turn the API on |
+| `Manifest file has been updated. Overwrite?` | Type **Yes** — this is expected on the first push |
+| `Project contents must include a manifest named appsscript` | `appsscript.json` must be inside `src/`, not the project root — it already is in this repo |
+| `Error: Invalid API call` on push | Wrong or missing `scriptId` in `.clasp.json` — re-copy from Project Settings |
+| `Parent ID not set, unable to open document` | Missing `parentId` in `.clasp.json` — add the Sheet file ID from the Sheet URL |
+| `Unknown command "clasp open"` | Removed in v3 — use `clasp open-container` or `clasp open-script` |
 | BIR Tools menu not showing | Reload the Google Sheet after `clasp push` |
-| `Permission denied` on file creation | Check `appsscript.json` has the Drive OAuth scope (it does by default) |
-| Script error when clicking a tool | Open **Extensions > Apps Script → Execution log** to see the stack trace |
-
----
-
-## Security
-
-`.clasp.json` is in `.gitignore` — it never gets committed. If you need to share setup with a teammate, they run `clasp create` themselves (or copy the Script ID from the Sheet's Apps Script settings).
+| Script error when clicking a tool | Open **Extensions > Apps Script** → check the **Execution log** |

@@ -162,47 +162,31 @@ Google Apps Script project manifest. Defines the runtime version and required OA
 
 ## 🚀 Setup Guide (For Developers)
 
-### Prerequisites
-- Node.js v14+, Git, a Google account
+Full guide: [`docs/HOW_TO_DEPLOY.md`](docs/HOW_TO_DEPLOY.md)
+
+Quick version:
 
 ```bash
-git clone https://github.com/Danncode10/bir-compliance-toolkit.git
-cd bir-compliance-toolkit
+# 1. Install
 npm install -g @google/clasp
-```
 
-### 1. Log in to Google
-```bash
+# 2. Enable Apps Script API (one-time, in browser)
+#    https://script.google.com/home/usersettings → toggle ON
+
+# 3. Log in
 clasp login
-```
-A browser tab opens — sign in and click **Allow** on all permissions.
 
-Then enable the Apps Script API (one-time): **https://script.google.com/home/usersettings** → toggle **Google Apps Script API** to On.
+# 4. Fill in .clasp.json with your Script ID + Sheet file ID
+cp .clasp.json.example .clasp.json
 
-### 2. Link to a Google Apps Script project
-
-**Path A — No Sheet yet (recommended)**
-```bash
-clasp create --title "BIR Compliance Toolkit" --type sheets
-```
-Creates the Sheet + Script and writes `.clasp.json` automatically. Skip to Step 3.
-
-**Path B — Already have a Sheet**
-Open it → **Extensions > Apps Script** → ⚙️ **Project Settings** → copy the Script ID → paste it into `.clasp.json`. Then go to Step 3. Do **not** run `clasp create`.
-
-### 3. Push the code
-```bash
+# 5. Push
 clasp push
-```
 
-### 4. Open and verify
-```bash
+# 6. Open
 clasp open-container   # opens the linked Google Sheet
-clasp open-script      # opens the Apps Script editor
 ```
-Reload the Google Sheet — the **BIR Tools** menu appears.
 
-For the full deployment guide see [`docs/HOW_TO_DEPLOY.md`](docs/HOW_TO_DEPLOY.md).
+Reload the Sheet — the **BIR Tools** menu appears.
 
 ---
 
@@ -210,7 +194,7 @@ For the full deployment guide see [`docs/HOW_TO_DEPLOY.md`](docs/HOW_TO_DEPLOY.m
 
 ```bash
 # Edit code in src/
-clasp push       # Upload to Apps Script
+clasp push       # upload to Apps Script
 # Test in the Sheet
 git add src/
 git commit -m "your message"
