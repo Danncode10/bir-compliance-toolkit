@@ -112,7 +112,23 @@ If the menu doesn't appear, go to **Extensions > Apps Script** and check the Exe
 
 ---
 
-## Step 7 — Set up the input sheets
+## Step 7 — Authorize the script (first run only)
+
+The first time you run any tool from the BIR Tools menu, Google will show two security screens. This is normal for unverified personal scripts.
+
+**Screen 1 — "Google hasn't verified this app"**
+
+Click **Advanced** → then **"Go to Untitled project (unsafe)"**.
+
+**Screen 2 — Permissions request**
+
+Click **Select all** → then **Continue**.
+
+You only need to do this once. The script will proceed normally on all future runs.
+
+---
+
+## Step 8 — Set up the input sheets
 
 For each generator, run its Setup function from the menu before trying to generate:
 
