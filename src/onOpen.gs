@@ -11,6 +11,8 @@ function onOpen() {
     .addSubMenu(ui.createMenu('SLSP')
       .addItem('Setup SLSP Sheet', 'setupSLSPSheet')
       .addItem('Generate SLSP DAT File', 'generateSLSP'))
-    .addItem('Generate QAP DAT File', 'generateQAP')
+    .addSubMenu(ui.createMenu('QAP')
+      .addItem('Setup QAP Sheet', 'setupQAPSheet')
+      .addItem('Generate QAP DAT File', 'generateQAP'))
     .addToUi();
 }
