@@ -163,98 +163,51 @@ Google Apps Script project manifest. Defines the runtime version and required OA
 ## 🚀 Setup Guide (For Developers)
 
 ### Prerequisites
-- Node.js installed
-- Google account
-- Git installed
-- VS Code (recommended)
+- Node.js v14+, Git, a Google account
 
----
-
-### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/Danncode10/bir-compliance-toolkit.git
 cd bir-compliance-toolkit
-```
-
----
-
-### Step 2: Install clasp
-```bash
 npm install -g @google/clasp
 ```
 
----
-
-### Step 3: Login to Google via clasp
+### 1. Log in to Google
 ```bash
 clasp login
 ```
-This opens a browser window. Login with your Google account and allow permissions.
+A browser tab opens — sign in and click **Allow** on all permissions.
 
----
-
-### Step 4: Create a New Google Apps Script Project
+### 2. Create the Sheet + Script project
 ```bash
 clasp create --title "BIR Compliance Toolkit" --type sheets
 ```
-This creates a new Google Apps Script project and a new Google Sheet linked to it. It also generates a `.clasp.json` file with your script ID.
+This creates a Google Sheet, a linked Apps Script project, and writes `.clasp.json` with your Script ID automatically.
 
----
+> Already have a Sheet? Open it → **Extensions > Apps Script** → ⚙️ **Project Settings** → copy the Script ID → paste it into `.clasp.json`.
 
-### Step 5: Push Your Code to Google Apps Script
+### 3. Push the code
 ```bash
 clasp push
 ```
-This uploads all your `.gs` files from the `src/` folder to Google Apps Script.
 
----
-
-### Step 6: Open the Google Sheet
+### 4. Open and verify
 ```bash
 clasp open
 ```
-This opens your Google Apps Script project in the browser. Go back to the linked Google Sheet and reload it. You should see the **BIR Tools** menu appear in the menu bar.
+Switch to the linked Google Sheet and reload — the **BIR Tools** menu appears.
 
----
-
-### Step 7: Test Each Tool
-1. Click **BIR Tools** in the menu bar
-2. Select any tool (e.g., Generate SLSP DAT)
-3. Fill in the sample data
-4. Click Generate
-5. Check Google Drive for the output file
-
----
-
-### Step 8: Share the Google Sheet
-1. Click the **Share** button in Google Sheets
-2. Add FullSuite team members
-3. Set permission to **Editor** so they can fill in data
-4. Send the link
+For the full deployment guide see [`docs/HOW_TO_DEPLOY.md`](docs/HOW_TO_DEPLOY.md).
 
 ---
 
 ## 🔄 Development Workflow
 
-Every time you make changes to the code:
-
 ```bash
-# Make your changes in VS Code
-# Then push to Google Apps Script
-clasp push
-
-# To pull changes from Google Apps Script back to local
-clasp pull
-
-# To open the Apps Script editor in browser
-clasp open
-```
-
-Push to GitHub as normal:
-```bash
-git add .
+# Edit code in src/
+clasp push       # Upload to Apps Script
+# Test in the Sheet
+git add src/
 git commit -m "your message"
-git push
 ```
 
 ---
