@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# clasp configuration
+.clasp.json
+.claspignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+
+# Build outputs
+dist/
+build/
+
+# macOS
+.AppleDouble
+.LSOverride
+._*
