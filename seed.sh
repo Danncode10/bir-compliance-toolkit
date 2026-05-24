@@ -15,24 +15,38 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+# Read parentId from .clasp.json
+PARENT_ID=$(python3 -c "import json; d=json.load(open('.clasp.json')); print(d['parentId'])" 2>/dev/null)
+
+if [ -z "$PARENT_ID" ]; then
+  echo -e "${RED}Error: parentId not set in .clasp.json${NC}"
+  echo -e "Add your Sheet file ID to .clasp.json as \"parentId\"."
+  exit 1
+fi
+
+echo ""
+echo "BIR Compliance Toolkit — Seed Test Data"
+echo "────────────────────────────────────────"
+
+# Pass the spreadsheet ID to the script before running any seed function
+echo -n "  Initializing config... "
+clasp run-function initConfig --params "[\"${PARENT_ID}\"]"
+echo -e "${GREEN}done${NC}"
+
 run_seed() {
   local fn=$1
   local label=$2
   echo -n "  Seeding ${label}... "
-  if clasp run-function "$fn" 2>/dev/null; then
+  if clasp run-function "$fn"; then
     echo -e "${GREEN}done${NC}"
   else
     echo -e "${RED}failed${NC}"
-    echo -e "  ${YELLOW}Tip: Make sure the '${label}' sheet exists. Run its Setup function first.${NC}"
+    echo -e "  ${YELLOW}Tip: Make sure the '${label}' sheet exists. Run its Setup function first from BIR Tools menu.${NC}"
     return 1
   fi
 }
 
 TARGET=${1:-all}
-
-echo ""
-echo "BIR Compliance Toolkit — Seed Test Data"
-echo "────────────────────────────────────────"
 
 case "$TARGET" in
   2307) run_seed loadSample2307Data "Form 2307" ;;

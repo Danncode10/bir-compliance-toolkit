@@ -3,9 +3,14 @@
 //
 // getSpreadsheet_() uses the ID stored by onOpen() because clasp run has no
 // active UI session and getActiveSpreadsheet() returns null in that context.
+// Called by seed.sh before any seed function — stores the spreadsheet ID
+function initConfig(spreadsheetId) {
+  PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', spreadsheetId);
+}
+
 function getSpreadsheet_() {
   var id = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
-  if (!id) throw new Error('SPREADSHEET_ID not set. Open the Google Sheet once to initialize it.');
+  if (!id) throw new Error('SPREADSHEET_ID not set. Run seed.sh which calls initConfig first.');
   return SpreadsheetApp.openById(id);
 }
 
