@@ -1,5 +1,9 @@
 // Creates the BIR Tools custom menu in Google Sheets
 function onOpen() {
+  // Store spreadsheet ID so clasp run (seed.sh) can open it without an active UI session
+  PropertiesService.getScriptProperties()
+    .setProperty('SPREADSHEET_ID', SpreadsheetApp.getActiveSpreadsheet().getId());
+
   const ui = SpreadsheetApp.getUi();
   ui.createMenu('BIR Tools')
     .addSubMenu(ui.createMenu('Form 2307')

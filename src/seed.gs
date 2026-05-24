@@ -1,8 +1,16 @@
 // Seed functions — populate sheets with sample data for testing
 // Run via: clasp run loadSample2307Data (or ./seed.sh for all)
+//
+// getSpreadsheet_() uses the ID stored by onOpen() because clasp run has no
+// active UI session and getActiveSpreadsheet() returns null in that context.
+function getSpreadsheet_() {
+  var id = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
+  if (!id) throw new Error('SPREADSHEET_ID not set. Open the Google Sheet once to initialize it.');
+  return SpreadsheetApp.openById(id);
+}
 
 function loadSample2307Data() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const ss    = getSpreadsheet_();
   const sheet = ss.getSheetByName('Form 2307');
   if (!sheet) {
     throw new Error('Sheet "Form 2307" not found. Run Setup first.');
@@ -33,7 +41,7 @@ function loadSample2307Data() {
 }
 
 function loadSample2317Data() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const ss    = getSpreadsheet_();
   const sheet = ss.getSheetByName('Form 2317');
   if (!sheet) {
     throw new Error('Sheet "Form 2317" not found. Run Setup first.');
@@ -83,7 +91,7 @@ function loadSample2317Data() {
 }
 
 function loadSampleSLSPData() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const ss    = getSpreadsheet_();
   const sheet = ss.getSheetByName('SLSP');
   if (!sheet) {
     throw new Error('Sheet "SLSP" not found. Run Setup first.');
@@ -105,7 +113,7 @@ function loadSampleSLSPData() {
 }
 
 function loadSampleQAPData() {
-  const ss    = SpreadsheetApp.getActiveSpreadsheet();
+  const ss    = getSpreadsheet_();
   const sheet = ss.getSheetByName('QAP');
   if (!sheet) {
     throw new Error('Sheet "QAP" not found. Run Setup first.');
