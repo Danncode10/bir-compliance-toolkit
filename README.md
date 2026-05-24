@@ -177,6 +177,8 @@ clasp login
 ```
 A browser tab opens — sign in and click **Allow** on all permissions.
 
+Then enable the Apps Script API (one-time): **https://script.google.com/home/usersettings** → toggle **Google Apps Script API** to On.
+
 ### 2. Link to a Google Apps Script project
 
 **Path A — No Sheet yet (recommended)**

@@ -26,6 +26,12 @@ clasp login
 
 A browser tab opens. Sign in and click **Allow** on all permissions.
 
+### 2a. Enable the Apps Script API
+
+Visit **https://script.google.com/home/usersettings** and toggle **Google Apps Script API** to **On**.
+
+This is a one-time step per Google account. `clasp push` will fail with "User has not enabled the Apps Script API" if skipped.
+
 ### 3. Link to a Google Apps Script project
 
 **Pick one path — do not do both.**
@@ -100,6 +106,7 @@ git commit -m "your message"
 | Symptom | Fix |
 |---------|-----|
 | `clasp: command not found` | Run `npm install -g @google/clasp` |
+| `User has not enabled the Apps Script API` | Visit https://script.google.com/home/usersettings and turn on **Google Apps Script API** |
 | `Error: Invalid API call` on push | Your `.clasp.json` has a wrong or missing Script ID — re-run `clasp create` or paste the correct ID |
 | BIR Tools menu not showing | Reload the Google Sheet after `clasp push` |
 | `Permission denied` on file creation | Check `appsscript.json` has the Drive OAuth scope (it does by default) |
