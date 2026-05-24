@@ -1,0 +1,5 @@
+Type,TIN,Name,Nature,Gross Amount,VAT Amount
+SLS,123-456-789-000,Sample Buyer Inc.,OR,10000.00,1200.00
+SLS,234-567-890-000,Another Company Ltd.,DR,25000.00,3000.00
+SLP,345-678-901-000,Sample Seller Corp.,SI,50000.00,6000.00
+SLP,456-789-012-000,Vendor Services Inc.,OR,15000.00,1800.00
