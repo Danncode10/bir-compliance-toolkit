@@ -18,5 +18,12 @@ function onOpen() {
     .addSubMenu(ui.createMenu('QAP')
       .addItem('Setup QAP Sheet', 'setupQAPSheet')
       .addItem('Generate QAP DAT File', 'generateQAP'))
+    .addSeparator()
+    .addSubMenu(ui.createMenu('Developer')
+      .addItem('Load All Sample Data', 'loadAllSampleData')
+      .addItem('Load Sample 2307 Data', 'loadSample2307Data')
+      .addItem('Load Sample 2317 Data', 'loadSample2317Data')
+      .addItem('Load Sample SLSP Data', 'loadSampleSLSPData')
+      .addItem('Load Sample QAP Data', 'loadSampleQAPData'))
     .addToUi();
 }

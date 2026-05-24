@@ -15,7 +15,7 @@ function getSpreadsheet_() {
 }
 
 function loadSample2307Data() {
-  const ss    = getSpreadsheet_();
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName('Form 2307');
   if (!sheet) {
     throw new Error('Sheet "Form 2307" not found. Run Setup first.');
@@ -46,7 +46,7 @@ function loadSample2307Data() {
 }
 
 function loadSample2317Data() {
-  const ss    = getSpreadsheet_();
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName('Form 2317');
   if (!sheet) {
     throw new Error('Sheet "Form 2317" not found. Run Setup first.');
@@ -96,7 +96,7 @@ function loadSample2317Data() {
 }
 
 function loadSampleSLSPData() {
-  const ss    = getSpreadsheet_();
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName('SLSP');
   if (!sheet) {
     throw new Error('Sheet "SLSP" not found. Run Setup first.');
@@ -118,7 +118,7 @@ function loadSampleSLSPData() {
 }
 
 function loadSampleQAPData() {
-  const ss    = getSpreadsheet_();
+  const ss    = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName('QAP');
   if (!sheet) {
     throw new Error('Sheet "QAP" not found. Run Setup first.');

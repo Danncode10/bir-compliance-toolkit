@@ -143,19 +143,21 @@ For each generator, run its Setup function from the menu before trying to genera
 
 ## Step 9 — Seed test data
 
-Instead of filling in the sheets manually, run the seed script to populate all sheets with valid sample data in one command:
+Instead of filling in the sheets manually, use the Developer menu to load sample data in one click.
+
+Run `./seed.sh` to open the Sheet automatically:
 
 ```bash
-./seed.sh          # seed all 4 sheets at once
-./seed.sh 2307     # seed only Form 2307
-./seed.sh 2317     # seed only Form 2317
-./seed.sh slsp     # seed only SLSP
-./seed.sh qap      # seed only QAP
+./seed.sh
 ```
 
-> Run each sheet's **Setup** function first (Step 8) before seeding — the seed script writes into existing sheets, it does not create them.
+Then in the Sheet click: **BIR Tools > Developer > Load All Sample Data**
 
-After seeding, go to the Google Sheet, open the seeded tab, and run the matching Generate function from the BIR Tools menu to verify end-to-end output.
+This populates all 4 sheets (2307, 2317, SLSP, QAP) with valid test data. Individual options are also available under the Developer submenu if you only want to seed one form.
+
+> Run each sheet's **Setup** function first (Step 8) before seeding — the seed functions write into existing sheets, they do not create them.
+
+After seeding, run Generate from each submenu to verify end-to-end output.
 
 ---
 
