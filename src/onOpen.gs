@@ -8,7 +8,9 @@ function onOpen() {
     .addSubMenu(ui.createMenu('Form 2317')
       .addItem('Setup Form 2317 Sheet', 'setup2317Sheet')
       .addItem('Generate 2317 PDF', 'generate2317'))
-    .addItem('Generate SLSP DAT File', 'generateSLSP')
+    .addSubMenu(ui.createMenu('SLSP')
+      .addItem('Setup SLSP Sheet', 'setupSLSPSheet')
+      .addItem('Generate SLSP DAT File', 'generateSLSP'))
     .addItem('Generate QAP DAT File', 'generateQAP')
     .addToUi();
 }
