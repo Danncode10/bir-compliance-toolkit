@@ -48,6 +48,7 @@ src/
   ├── generate2317.gs    → Form 2317 logic
   ├── generateSLSP.gs    → SLSP DAT generation
   ├── generateQAP.gs     → QAP DAT generation
+  ├── seed.gs            → loadSample*Data() helpers for dev/test seeding
   └── utils.gs           → Shared validation and utility functions
 ```
 

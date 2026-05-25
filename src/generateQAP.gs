@@ -29,8 +29,8 @@ function generateQAP() {
   const quarter    = String(sheet.getRange('C4').getValue()).trim();
 
   // --- Read all data rows ---
-  const lastRow   = sheet.getLastRow();
-  const DATA_START = 7;
+  const lastRow    = sheet.getLastRow();
+  const DATA_START = 8;
 
   if (lastRow < DATA_START) {
     showError('No payee rows found. Add data starting at row ' + DATA_START + '.');

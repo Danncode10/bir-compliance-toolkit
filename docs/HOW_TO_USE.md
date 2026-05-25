@@ -14,26 +14,29 @@ Your IT admin has shared a Google Sheet that contains the BIR Compliance Toolkit
 
 **Steps:**
 
-1. Open the Google Sheet and go to the **SLSP** tab
-2. Fill in your company information at the top:
-   - Company TIN
-   - Year
-   - Quarter
-3. Add your transaction rows below the headers with:
+1. If this is your first time, click **BIR Tools → SLSP → Setup SLSP Sheet** to create the input tab
+2. Go to the **SLSP** tab and fill in your company information at the top (cells C2, C3, C4):
+   - Company TIN (C2)
+   - Year (C3)
+   - Quarter 1–4 (C4)
+3. Add your transaction rows below row 7 with:
    - Type (SLS for sales, SLP for purchases)
    - Buyer/Seller TIN
    - Buyer/Seller name
-   - Nature code (OR, DR, SI, etc.)
+   - Nature code (SI, OR, DR, CN, DM, or CD)
    - Gross amount
-   - VAT amount (automatically 12% of gross)
-4. Click **BIR Tools** → **Generate SLSP DAT File**
-5. Wait for the success message
-6. Go to Google Drive and find your DAT file
-7. Email it to **esubmission@bir.gov.ph**
+   - VAT amount (must be exactly 12% of gross)
+   - Exempt amount (0 if none)
+   - Zero-rated amount (0 if none)
+4. Delete the sample row (row 8) before generating
+5. Click **BIR Tools → SLSP → Generate SLSP DAT File**
+6. Wait for the success message
+7. Go to Google Drive and find your DAT file (named `SLSP_[TIN]_[YEAR]_Q[QTR].DAT`)
+8. Email it to **esubmission@bir.gov.ph**
 
-**Important:** 
+**Important:**
 - Make sure your VAT amount is exactly 12% of the gross amount, or the file will be rejected
-- All TIN numbers must follow the XXX-XXX-XXX-XXX format
+- All TIN numbers must follow the XXX-XXX-XXX or XXX-XXX-XXX-XXX format
 
 ---
 
@@ -43,26 +46,28 @@ Your IT admin has shared a Google Sheet that contains the BIR Compliance Toolkit
 
 **Steps:**
 
-1. Open the Google Sheet and go to the **QAP** tab
-2. Fill in your company information at the top:
-   - Company TIN
-   - Year
-   - Quarter
-3. Add your payee rows with:
+1. If this is your first time, click **BIR Tools → QAP → Setup QAP Sheet** to create the input tab
+2. Go to the **QAP** tab and fill in your company information at the top (cells C2, C3, C4):
+   - Company TIN (C2)
+   - Year (C3)
+   - Quarter 1–4 (C4)
+3. Add your payee rows below row 7 with:
    - Payee TIN
    - Payee name
-   - ATC code (tax classification)
+   - ATC code (e.g. WC010, WC158, WC120)
    - Amount paid
-   - Tax rate (1%, 2%, 5%, 10%, or 15%)
+   - EWT rate (1%, 2%, 5%, 10%, or 15%)
    - Tax withheld (must equal Amount × Rate)
-4. Click **BIR Tools** → **Generate QAP DAT File**
-5. Wait for the success message
-6. Go to Google Drive and find your DAT file
-7. Attach it to your BIR Form 1601-EQ submission
+4. Delete the sample row (row 8) before generating
+5. Click **BIR Tools → QAP → Generate QAP DAT File**
+6. Wait for the success message
+7. Go to Google Drive and find your DAT file (named `QAP_[TIN]_[YEAR]_Q[QTR].DAT`)
+8. Attach it to your BIR Form 1601-EQ submission
 
 **Important:**
-- Tax withheld must equal exactly Amount × Tax Rate
-- Use valid ATC codes (DST, PFC, etc.)
+- Tax withheld must equal exactly Amount × EWT Rate (±₱0.02 rounding tolerance)
+- Valid EWT rates are: 1%, 2%, 5%, 10%, 15%
+- All TIN numbers must follow the XXX-XXX-XXX or XXX-XXX-XXX-XXX format
 
 ---
 
@@ -74,14 +79,13 @@ Your IT admin has shared a Google Sheet that contains the BIR Compliance Toolkit
 
 **Steps:**
 
-1. Go to the **Form 2307** tab
-2. Fill in all the required fields:
-   - Your company name and TIN (payor)
-   - Contractor/freelancer name and TIN (payee)
-   - Amount paid
-   - Tax rate and tax withheld
-   - Date of payment
-3. Click **BIR Tools** → **Generate 2307 PDF**
+1. If this is your first time, click **BIR Tools → Form 2307 → Setup Form 2307 Sheet** to create the input tab
+2. Go to the **Form 2307** tab and fill in all required fields:
+   - Period From and Period To (MM/YYYY format, e.g. `01/2026`)
+   - Payor TIN (C5), Name (C6), Address (C7), ZIP (C8)
+   - Payee TIN (C11), Name (C12), Address (C13), ZIP (C14)
+   - Income entries starting at row 18: Nature of income, ATC code, and quarterly amounts/EWT
+3. Click **BIR Tools → Form 2307 → Generate 2307 PDF**
 4. Check Google Drive for the PDF
 5. Download, print, and give to the payee
 
@@ -93,14 +97,15 @@ Your IT admin has shared a Google Sheet that contains the BIR Compliance Toolkit
 
 **Steps:**
 
-1. Go to the **Form 2317** tab
-2. Fill in all required fields:
-   - Your company name and TIN (employer)
-   - Employee name and TIN
-   - Total compensation for the year
-   - Total tax withheld for the year
-   - Year of compensation
-3. Click **BIR Tools** → **Generate 2317 PDF**
+1. If this is your first time, click **BIR Tools → Form 2317 → Setup Form 2317 Sheet** to create the input tab
+2. Go to the **Form 2317** tab and fill in all required fields:
+   - Year (C2)
+   - Employer TIN (C5), Name (C6), Address (C7), ZIP (C8)
+   - Employee TIN (C11), Name (C12), Address (C13), ZIP (C14)
+   - Compensation breakdown: Basic Salary (C17, required), plus optional Holiday Pay, Overtime, Night Diff, etc.
+   - Non-taxable amounts: 13th Month cap max ₱90,000 (C28), De Minimis (C29), SSS/PHIC/Pag-IBIG (C30)
+   - Monthly breakdown: rows 38–49, columns C (compensation) and D (tax withheld)
+3. Click **BIR Tools → Form 2317 → Generate 2317 PDF**
 4. Check Google Drive for the PDF
 5. Download, print, and give to the employee
 

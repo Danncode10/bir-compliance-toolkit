@@ -24,7 +24,8 @@ src/
   generate2307.gs   → Form 2307 PDF + setup2307Sheet()
   generate2317.gs   → Form 2317 PDF + setup2317Sheet()
   generateSLSP.gs   → SLSP .DAT file + setupSLSPSheet()
-  generateQAP.gs    → QAP .DAT file + setupQAPSheet()  [to be implemented]
+  generateQAP.gs    → QAP .DAT file + setupQAPSheet()
+  seed.gs           → loadSample*Data() helpers for one-command test seeding
   utils.gs          → validateTIN(), validateAmount(), formatTIN(), formatAmount(),
                       downloadFile(), showError(), showSuccess()
 
