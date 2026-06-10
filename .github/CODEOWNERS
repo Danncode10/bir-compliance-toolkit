@@ -1,0 +1,15 @@
+# CODEOWNERS
+# Automatically requests review from the listed person when files change.
+# Format: <file-pattern>    @<github-username>
+
+# DevOps owns everything by default
+*                           @Danncode10
+
+# CI/CD and GitHub config — DevOps only
+/.github/                   @Danncode10
+
+# Core source files — DevOps reviews all logic changes
+/src/                       @Danncode10
+
+# Documentation — docs lead can review
+/docs/                      @Danncode10
